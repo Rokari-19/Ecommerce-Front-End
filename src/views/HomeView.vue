@@ -26,23 +26,8 @@
         </h2>
 
       </div>
-
-        <div class="column is-3" v-for="product in latestProducts" v-bind:key="product.id">
-          
-          <div class="box">
-            
-            <figure class="image mb-4 is-rounded">
-              <img :src="product.get_thumbnail" alt="">
-            </figure>
-
-            <h3 class="is-size-4">{{ product.name }}</h3>
-
-            <p class="is-size-6 has-text-grey">${{ product.price }}</p>
-            
-            <router-link :to="product.get_absolute_url" class="button is-dark mt-4">view details</router-link>
-          </div>
-
-        </div>
+      
+      <productBox v-for="product in latestProducts" v-bind:key="product.id" v-bind:product="product"/>
 
     </div>
     <section class="hero  my-auto ">
@@ -51,7 +36,7 @@
         <div class="column is-12">
         
           <h1 class="title is-size-4 has-text-centered has-text-dark my-6">
-            Seamless payments powered by Stripe&#174;
+            Seamless payments powered by PayStack&#174;
           </h1>
 
         </div>
@@ -76,7 +61,7 @@
             Affordable shipping from our office to anywhere in Nigeria
           </p>
           <div class="">
-            <a href="#" class="has-text-link">Learn More</a>
+            <a href="/stores" class="has-text-link">Learn More</a>
           </div>
         </div>
 
@@ -101,11 +86,19 @@
   background: url(../assets/safarulla-kasmi-uTPkovVRhR8-unsplash.jpg);
   
 }
+.pic {
+    border-radius: 1px;
+}
+
+.op {
+  opacity: 1;
+}
 </style>
 
 <script>
 // @ is an alias to /src
 import axios from 'axios'
+import ProductBox from '@/components/ProductBox'
 
 
 
@@ -119,20 +112,28 @@ export default {
   },
   
   components: {
+    ProductBox
   },
   
   mounted () {
     this.getLatestProducts()
+
+    document.title = 'Home | beats.com'
   },
 
   methods: {
-    getLatestProducts() {
-      axios.get('/api/v1/latest-products/').then(response => {
+    async getLatestProducts() {
+      this.$store.commit('setIsLoading', true)
+
+      await axios.get('/api/v1/latest-products/').then(response => {
         this.latestProducts = response.data
       })
       .catch(error => {
         console.log(error)
       })
+
+      this.$store.commit('setIsLoading', false)
+
     }
   }
 }
