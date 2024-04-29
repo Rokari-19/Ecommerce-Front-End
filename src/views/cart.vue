@@ -33,7 +33,7 @@
             <div class="column is-12 box has-background-dark">
                 <h2 class="subtitle has-text-centered">Summary</h2>
 
-                <strong>${{ cartTotalPrice.toFixed(2) }}</strong>, {{ cartTotalLength }} items
+                <strong>NGN{{ cartTotalPrice.toFixed(2) }}</strong>, {{ cartTotalLength }} items
 
                 <hr class="is-dark">
                 <router-link to="/cart/checkout" class="button is-success">Proceed to checkout</router-link>

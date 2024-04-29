@@ -7,6 +7,21 @@
                 </h1>
             </div>
 
+            <hr>
+
+            <div class="column is-12">
+                <h2 class="subtitle has-text-dark has-text-centered">
+                    Pending Orders
+                </h2>
+
+
+                
+                <OrderSummary
+                    v-for="order in orders"
+                    v-bind:key="order.id"
+                    v-bind:order="order" />
+            </div>
+
             <div class="column is-12">
                 <button @click="logOut()" class="button is-danger">Log Out</button>
             </div>
@@ -15,32 +30,51 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from 'axios'
+
+import OrderSummary from '@/components/OrderSummary.vue'
 
 export default {
     name: 'Account',
+    components: {
+        OrderSummary
+    },
+    data() {
+        return {
+            orders: []
+        }
+    },
+    mounted() {
+        document.title = 'My account | beats.com'
+
+        this.getMyOrders()
+    },
     methods: {
-        logOut() {
+        logout() {
             axios.defaults.headers.common["Authorization"] = ""
-            console.log(JSON.stringify(localStorage))
-            localStorage.removeItem["cart"]
-            localStorage.removeItem["token"]
-            localStorage.removeItem["username"]
-            localStorage.removeItem["userid"]
-            
+
+            localStorage.removeItem("token")
+            localStorage.removeItem("username")
+            localStorage.removeItem("userid")
 
             this.$store.commit('removeToken')
 
             this.$router.push('/')
-        }
-    },
-    data() {
-        return {
+        },
+        getMyOrders() {
+            this.$store.commit('setIsLoading', true)
 
+            axios
+                .get('/api/v1/orders/')
+                .then(response => {
+                    this.orders = response.data
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+
+            this.$store.commit('setIsLoading', false)
         }
-    },
-    mounted() {
-        document.title = 'Account | beats.com'
     }
 }
 </script>

@@ -9,10 +9,10 @@
             <a @click="incrementQuantity(item)">+</a>
         </td>
         <td class="mx-auto" >
-            ${{ item.product.price }}
+            NGN{{ item.product.price }}
         </td>
         <td class="mx-auto" >
-            ${{ getItemTotal(item).toFixed(2) }}
+            NGN{{ getItemTotal(item).toFixed(2) }}
         </td>
         <td class="mx-auto" ><button class="delete" @click="removeFromCart(item)" ></button></td>
         <!-- stopped video at 1:32:06 -->

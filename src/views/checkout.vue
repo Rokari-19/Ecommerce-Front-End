@@ -21,7 +21,7 @@
                             <td>{{ item.product.name }}</td>
                             <td>{{ item.quantity }}</td>
                             <td>{{ item.product.price }}</td>
-                            <td>${{ getItemTotal(item).toFixed(2) }}</td>
+                            <td>NGN{{ getItemTotal(item).toFixed(2) }}</td>
                         </tr>
                     </tbody>
 
@@ -30,7 +30,7 @@
                             <td colspan="1">Total</td>
                             <td>{{ cartTotalLength }}</td>
                             <td></td>
-                            <td>${{ cartTotalPrice.toFixed(2) }}</td>
+                            <td>NGN{{ cartTotalPrice.toFixed(2) }}</td>
                         </tr>
                     </tfoot>
                 </table>

@@ -18,7 +18,7 @@
                 <h2 class="subtitle has-text-dark">Product details:</h2>
                 <p class="has-text-dark">{{ product.description }}</p>
 
-                <p class="has-text-dark">Price: ${{ product.price }}</p>
+                <p class="has-text-dark">Price: NGN{{ product.price }}</p>
 
                 <div class="field has-addons mt-6">
                     <div class="control">

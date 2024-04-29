@@ -9,7 +9,7 @@
 
             <h3 class="is-size-4 has-text-white">{{ product.name }}</h3>
 
-            <p class="is-size-6 has-text-grey-300 ">${{ product.price }}</p>
+            <p class="is-size-6 has-text-grey-300 ">NGN{{ product.price }}</p>
 
             <router-link :to="product.get_absolute_url" class="button is-dark has-text-centered mt-4">view
                 details</router-link>

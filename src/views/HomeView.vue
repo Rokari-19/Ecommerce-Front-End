@@ -27,7 +27,7 @@
 
       </div>
       
-      <productBox v-for="product in latestProducts" v-bind:key="product.id" v-bind:product="product"/>
+      <ProductBox v-for="product in latestProducts" v-bind:key="product.id" v-bind:product="product"/>
 
     </div>
     <section class="hero  my-auto ">
@@ -36,7 +36,7 @@
         <div class="column is-12">
         
           <h1 class="title is-size-4 has-text-centered has-text-dark my-6">
-            Seamless payments powered by PayStack&#174;
+            Seamless payments powered by Stripe&#174;
           </h1>
 
         </div>
@@ -98,9 +98,7 @@
 <script>
 // @ is an alias to /src
 import axios from 'axios'
-import ProductBox from '@/components/ProductBox'
-
-
+import ProductBox from '@/components/ProductBox.vue'
 
 export default {
   name: 'HomeView',
@@ -125,12 +123,14 @@ export default {
     async getLatestProducts() {
       this.$store.commit('setIsLoading', true)
 
-      await axios.get('/api/v1/latest-products/').then(response => {
-        this.latestProducts = response.data
-      })
-      .catch(error => {
-        console.log(error)
-      })
+      await axios
+          .get('/api/v1/latest-products/')
+          .then(response => {
+            this.latestProducts = response.data
+          })
+          .catch(error => {
+            console.log(error)
+          })
 
       this.$store.commit('setIsLoading', false)
 
