@@ -35,7 +35,7 @@
         </div>
 
         <div class="navbar-end">
-          <router-link to="/over-ear" class="navbar-item">Over Ear</router-link>
+          <router-link to="/in-ear" class="navbar-item">Over Ear</router-link>
           <router-link to="/earbuds" class="navbar-item">Earbuds</router-link>
           <router-link to="/on-ear" class="navbar-item">On Ear</router-link>
 
