@@ -1,4 +1,4 @@
-# beats_vue
+# Ecommerce Front end
 
 ## Project setup
 ```
