@@ -228,7 +228,7 @@ export default {
             }
             console.log(data)
             axios
-                .post('/api/v1/checkout/', data)
+                .post('/api/v1/order/checkout/', data)
                 .then(response => {
                     this.$store.commit('clearCart')
                     this.$router.push('/cart/success')

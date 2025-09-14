@@ -45,7 +45,7 @@ export default {
             this.$store.commit('setIsLoading', true)
 
             await axios
-            .post('/api/v1/products/search/', {'query': this.query})
+            .post('/api/v1/core/products/search/', {'query': this.query})
             .then(response => {
                 this.products = response.data
             })

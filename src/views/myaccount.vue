@@ -65,7 +65,7 @@ export default {
             this.$store.commit('setIsLoading', true)
 
             axios
-                .get('/api/v1/orders/')
+                .get('/api/v1/order/my-orders/')
                 .then(response => {
                     this.orders = response.data
                 })
